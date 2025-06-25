@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where Does Education Services Belong? An Industry Benchmark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- 
+        Selected Palette Name: Energetic & Playful
+        Confirmation: NEITHER Mermaid JS NOR SVG were used in this document. All charts are rendered on Canvas via Chart.js and diagrams are built with structured HTML/CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8; /* Light Blue-Gray background */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 640px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        @media (min-width: 1024px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .comparison-chart-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            max-height: 400px;
+        }
+        .kpi-card {
+            background-color: #007EA7; /* Muted Blue */
+            color: white;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .main-header {
+            background: linear-gradient(90deg, #003459, #007EA7);
+        }
+        .benefit-list li::before {
+            content: '✅';
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        .drawback-list li::before {
+            content: '⚠️';
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        .benefit-list li, .drawback-list li {
+            display: flex;
+            align-items: flex-start;
+        }
+        .llm-button {
+            background-color: #00A8E8; /* Brilliant Blue */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .llm-button:hover {
+            background-color: #007EA7; /* Muted Blue */
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #00A8E8;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header text-white p-8 text-center shadow-lg">
+        <h1 class="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight">Where Does Education Services Belong?</h1>
+        <p class="text-lg md:text-xl font-light text-blue-100 max-w-3xl mx-auto">An infographic analyzing TSIA benchmark data on the organizational home of customer education.</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="intro" class="mb-16 text-center">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">A Strategic Asset, Not a Cost Center</h2>
+            <p class="max-w-4xl mx-auto text-gray-600 text-lg">
+                Modern Education Services (ES) is a critical driver of business success. By empowering customers, ES directly boosts product adoption, increases retention, and even drives revenue. Its organizational placement is therefore a key strategic decision. This analysis reveals where top technology companies position their ES teams for maximum impact.
+            </p>
+        </section>
+        
+        <section id="kpis" class="mb-16">
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="kpi-card rounded-xl p-6 text-center">
+                    <div class="text-4xl font-bold mb-2">🚀</div>
+                    <h3 class="text-xl font-semibold mb-1">Drives Adoption</h3>
+                    <p class="font-light opacity-90">Ensures customers proficiently use product features, maximizing value.</p>
+                </div>
+                <div class="kpi-card rounded-xl p-6 text-center">
+                    <div class="text-4xl font-bold mb-2">❤️</div>
+                    <h3 class="text-xl font-semibold mb-1">Boosts Retention</h3>
+                    <p class="font-light opacity-90">Educated customers are more satisfied, leading to long-term loyalty.</p>
+                </div>
+                <div class="kpi-card rounded-xl p-6 text-center">
+                    <div class="text-4xl font-bold mb-2">💰</div>
+                    <h3 class="text-xl font-semibold mb-1">Increases Revenue</h3>
+                    <p class="font-light opacity-90">Creates upsell opportunities and enhances customer lifetime value.</p>
+                </div>
+                <div class="kpi-card rounded-xl p-6 text-center">
+                    <div class="text-4xl font-bold mb-2">📉</div>
+                    <h3 class="text-xl font-semibold mb-1">Reduces Costs</h3>
+                    <p class="font-light opacity-90">Alleviates support burden by enabling customer self-service.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dominant-structure" class="mb-16 bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">The Dominant Reporting Structure</h2>
+                    <p class="text-gray-600 mb-4 text-lg">
+                        TSIA benchmark data reveals a clear and dominant trend in the technology industry. The vast majority of Education Services organizations are structured under a single, centralized umbrella to ensure consistency and global reach.
+                    </p>
+                    <div class="flex items-center bg-blue-50 p-6 rounded-lg">
+                        <div class="text-6xl font-extrabold text-[#00A8E8] mr-6">74%</div>
+                        <p class="text-xl font-semibold text-[#003459]">
+                            of Education Services organizations report into a <span class="font-bold">Global Services Organization.</span>
+                        </p>
+                    </div>
+                     <p class="text-gray-500 mt-4 text-sm">
+                        This centralized model is preferred over regional leadership to standardize content, streamline delivery, and create a unified learning experience for customers worldwide.
+                    </p>
+                </div>
+                <div class="chart-container">
+                    <canvas id="dominanceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-16 bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2 text-center">Common vs. Uncommon Alignments</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-8 text-lg">
+                While a Global Services org is the most common home, ES often resides within other service-focused departments. Reporting to Product or Sales, however, is notably rare.
+            </p>
+            <div class="comparison-chart-container">
+                <canvas id="prevalenceChart"></canvas>
+            </div>
+        </section>
+
+        <section id="deep-dive" class="mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">A Deeper Dive: Where Could ES Report?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#003459] mb-4">🤝 Customer Success</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">Focuses on aligning education with customer outcomes, retention, and value realization.</p>
+                    <div class="space-y-4">
+                        <ul class="benefit-list text-gray-700 space-y-2">
+                           <li>Directly supports retention and adoption KPIs.</li>
+                           <li>Content addresses real-time customer needs.</li>
+                        </ul>
+                        <ul class="drawback-list text-gray-700 space-y-2">
+                            <li>Reactive escalations can divert focus from strategic education.</li>
+                            <li>Potential for friction over customer interaction roles.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#003459] mb-4">🛠️ Professional Services</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">Integrates training directly into the product implementation lifecycle.</p>
+                     <div class="space-y-4">
+                        <ul class="benefit-list text-gray-700 space-y-2">
+                           <li>Accelerates customer time-to-value during setup.</li>
+                           <li>Strong alignment with project-based revenue generation.</li>
+                        </ul>
+                        <ul class="drawback-list text-gray-700 space-y-2">
+                            <li>Can be overly project-focused, neglecting ongoing education.</li>
+                            <li>May deprioritize non-billable training development.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col">
+                    <h3 class="text-2xl font-bold text-[#003459] mb-4">🎧 Support Services</h3>
+                    <p class="text-gray-600 mb-6 flex-grow">Uses insights from support tickets to create proactive, problem-solving content.</p>
+                    <div class="space-y-4">
+                        <ul class="benefit-list text-gray-700 space-y-2">
+                           <li>Directly reduces support ticket volume and costs.</li>
+                           <li>Creates self-service resources for common issues.</li>
+                        </ul>
+                        <ul class="drawback-list text-gray-700 space-y-2">
+                            <li>May focus too much on "break-fix" training.</li>
+                            <li>Risks being viewed as a cost center, limiting investment.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col md:col-span-3">
+                     <h3 class="text-2xl font-bold text-[#003459] mb-4 text-center">💡 The Key Takeaway: Alignment is Everything</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                        <p class="text-gray-600 text-lg">
+                            Regardless of the exact reporting line, success hinges on <span class="font-semibold text-[#003459]">strong cross-functional collaboration</span>. Education Services must work closely with Product, Sales, Marketing, and all Services teams to create a cohesive customer journey. The optimal structure is one that best aligns with the company's primary business goals—whether that's retention, implementation speed, or support efficiency. The dominant trend of reporting into a "Services" organization underscores a focus on post-sales customer value and operational excellence.
+                        </p>
+                        <div class="flex flex-col space-y-3 text-center md:text-left">
+                           <div class="bg-blue-50 p-4 rounded-lg">
+                              <p class="font-semibold text-[#003459]">1. Define Clear Business Goals for ES.</p>
+                           </div>
+                           <div class="bg-blue-50 p-4 rounded-lg">
+                              <p class="font-semibold text-[#003459]">2. Foster Strong Cross-Functional Ties.</p>
+                           </div>
+                           <div class="bg-blue-50 p-4 rounded-lg">
+                              <p class="font-semibold text-[#003459]">3. Measure Impact and Demonstrate ROI.</p>
+                           </div>
+                        </div>
+                     </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="llm-feature" class="mb-16 bg-white p-6 md:p-8 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4 text-center">✨ Strategic Alignment Recommender ✨</h2>
+            <p class="text-center text-gray-600 max-w-3xl mx-auto mb-6 text-lg">
+                Describe your company's primary business goal or a key challenge, and our AI will suggest the most suitable Education Services organizational alignment based on industry best practices and insights.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-4 mb-6">
+                <input type="text" id="businessGoalInput" placeholder="e.g., 'Increase customer retention' or 'Reduce support costs'" class="flex-grow w-full md:w-auto p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#00A8E8] focus:border-transparent text-gray-700">
+                <button id="getAlignmentBtn" class="llm-button flex items-center justify-center gap-2">
+                    Get Alignment Suggestion
+                    <div id="loadingSpinner" class="loading-spinner hidden"></div>
+                </button>
+            </div>
+            <div id="alignmentResult" class="bg-blue-50 p-6 rounded-lg text-gray-800 min-h-[100px] flex items-center justify-center text-center">
+                <p class="text-lg text-gray-600">Your AI-powered suggestion will appear here.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#003459] text-white text-center p-6 mt-12">
+        <p class="opacity-80">Infographic based on benchmark data and analysis from the Technology & Services Industry Association (TSIA).</p>
+        <p class="text-xs opacity-60 mt-2">Participating benchmark companies include Google Cloud, NetApp, Juniper Networks, ServiceNow, and others.</p>
+    </footer>
+
+    <script>
+        const wrapLabel = (label, maxWidth = 16) => {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+
+        const colors = {
+            primary: '#00A8E8',    // Brilliant Blue
+            secondary: '#007EA7',  // Muted Blue
+            dark: '#003459',       // Deep Navy
+            accent: '#EBEBEB'      // Light Gray for contrast
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createDominanceChart();
+            createPrevalenceChart();
+            setupLLMFeature();
+        });
+
+        function createDominanceChart() {
+            const ctx = document.getElementById('dominanceChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Global Services Org', 'Other Structures'],
+                    datasets: [{
+                        label: 'Reporting Structure',
+                        data: [74, 26],
+                        backgroundColor: [colors.primary, colors.accent],
+                        borderColor: ['#FFFFFF'],
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                color: '#374151',
+                                font: {
+                                    size: 14,
+                                    family: "'Inter', sans-serif"
+                                },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback
+                            },
+                            backgroundColor: colors.dark,
+                            titleFont: { size: 16, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            padding: 12,
+                            cornerRadius: 6,
+                            boxPadding: 4,
+                        }
+                    }
+                }
+            });
+        }
+
+        function createPrevalenceChart() {
+            const ctx = document.getElementById('prevalenceChart').getContext('2d');
+            const data = {
+                labels: ['Global Services Org', wrapLabel('Professional Services', 18), 'Support Services', wrapLabel('Product Management', 18), wrapLabel('Sales / Marketing', 18)],
+                datasets: [{
+                    label: 'Prevalence in Industry',
+                    data: [95, 80, 75, 20, 15],
+                    backgroundColor: [
+                        colors.primary,
+                        colors.secondary,
+                        colors.secondary,
+                        '#F87171', // Red accent for uncommon
+                        '#F87171'  // Red accent for uncommon
+                    ],
+                    borderColor: colors.dark,
+                    borderWidth: 0,
+                    borderRadius: 5
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: data,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            grid: {
+                                display: true,
+                                color: '#E5E7EB'
+                            },
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    if(value > 90) return 'Dominant';
+                                    if(value > 60) return 'Common';
+                                    if(value > 30) return 'Occasional';
+                                    if(value > 0) return 'Uncommon';
+                                    return '';
+                                },
+                                color: '#4B5563',
+                                font: { size: 12 }
+                            }
+                        },
+                        y: {
+                            grid: {
+                                display: false
+                            },
+                            ticks: {
+                                color: '#1F2937',
+                                font: {
+                                    size: 14,
+                                    weight: '500',
+                                    family: "'Inter', sans-serif"
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    let value = context.raw;
+                                    let level = '';
+                                    if(value > 90) level = 'Dominant';
+                                    else if(value > 60) level = 'Common';
+                                    else if(value > 30) level = 'Occasional';
+                                    else level = 'Uncommon';
+                                    return `Prevalence: ${level}`;
+                                }
+                            },
+                            backgroundColor: colors.dark,
+                            titleFont: { size: 16, weight: 'bold' },
+                            bodyFont: { size: 14 },
+                            padding: 12,
+                            cornerRadius: 6,
+                            boxPadding: 4,
+                        }
+                    }
+                }
+            });
+        }
+
+        function setupLLMFeature() {
+            const getAlignmentBtn = document.getElementById('getAlignmentBtn');
+            const businessGoalInput = document.getElementById('businessGoalInput');
+            const alignmentResult = document.getElementById('alignmentResult');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            getAlignmentBtn.addEventListener('click', async () => {
+                const goal = businessGoalInput.value.trim();
+                if (!goal) {
+                    alignmentResult.innerHTML = '<p class="text-red-500">Please enter a business goal.</p>';
+                    return;
+                }
+
+                loadingSpinner.classList.remove('hidden');
+                getAlignmentBtn.disabled = true;
+                alignmentResult.innerHTML = '<p class="text-gray-500">Thinking...</p>';
+
+                try {
+                    let chatHistory = [];
+                    const prompt = `As an expert in Education Services organizational structures and their alignment with business goals, recommend the most suitable reporting structure for a company whose primary goal is: "${goal}". Consider common industry structures like Global Services Org, Customer Success, Professional Services, and Support Services. Explain why the suggested alignment is best for this goal and briefly mention potential drawbacks or considerations. Keep the response concise, approximately 2-3 paragraphs.`;
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; 
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    
+                    const response = await fetch(apiUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(payload)
+                            });
+                    
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        alignmentResult.innerHTML = `<p>${text}</p>`;
+                    } else {
+                        alignmentResult.innerHTML = '<p class="text-red-500">Could not generate a suggestion. Please try again.</p>';
+                    }
+                } catch (error) {
+                    alignmentResult.innerHTML = `<p class="text-red-500">An error occurred: ${error.message}. Please try again.</p>`;
+                    console.error('Gemini API call failed:', error);
+                } finally {
+                    loadingSpinner.classList.add('hidden');
+                    getAlignmentBtn.disabled = false;
+                }
+            });
+        }
+    </script>
+</body>
+</html>
